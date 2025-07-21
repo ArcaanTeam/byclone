@@ -1,4 +1,3 @@
-// src/components/FullTicker.tsx
 import { useMarketStore } from "@/store/market.store";
 
 export const FullTicker = () => {

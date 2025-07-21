@@ -1,5 +1,3 @@
-// src/store/ticker.store.ts
-// src/store/market.store.ts
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 

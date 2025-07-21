@@ -1,4 +1,3 @@
-// src/hooks/useBinanceTicker.ts
 import { useEffect } from "react";
 import useWebSocket from "react-use-websocket";
 import { useMarketStore } from "@/store/market.store";
