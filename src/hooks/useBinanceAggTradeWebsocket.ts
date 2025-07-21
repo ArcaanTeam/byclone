@@ -1,4 +1,3 @@
-// src/hooks/useBinanceTrades.ts
 import { useTradeStore } from "@/store/trades-list.store";
 import { useEffect } from "react";
 import useWebSocket from "react-use-websocket";

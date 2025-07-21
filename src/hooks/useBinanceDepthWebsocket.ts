@@ -1,4 +1,3 @@
-// src/hooks/useBinanceDepth.ts
 import { useEffect } from "react";
 import useWebSocket from "react-use-websocket";
 import { useOrderBookStore } from "@/store/order-book.store";
