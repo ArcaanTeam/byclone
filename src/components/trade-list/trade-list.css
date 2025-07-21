@@ -1,0 +1,30 @@
+.trade-list {
+  font-family: monospace;
+  padding: 1rem;
+  background: #111;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 8px;
+  width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.trade-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  font-size: 0.85rem;
+}
+
+.trade-row.buy .price {
+  color: green;
+}
+
+.trade-row.sell .price {
+  color: red;
+}
+
+.time {
+  opacity: 0.6;
+}

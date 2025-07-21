@@ -1,4 +1,5 @@
 import { useOrderBookStore } from '@/store/order-book.store';
+import './order-book.css'
 
 const LevelRow = ({ level, type }: { level: [string, string]; type: 'bid' | 'ask' }) => {
     const [price, qty] = level;
