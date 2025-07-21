@@ -1,14 +1,16 @@
 // src/App.tsx
-import { useBinanceDepth } from '@/hooks/useBinanceDepthWebsocket';
-import { OrderBook } from '@/components/OrderBook';
+// import { useBinanceDepth } from "@/hooks/useBinanceDepthWebsocket";
+// import { OrderBook } from "@/components/OrderBook";
+import { Ticker } from "@/components/Tickers";
+import { useBinanceTicker } from "./hooks/binanceWebsocketBaseUrl";
 
 function App() {
-  useBinanceDepth(); // start WebSocket
+  useBinanceTicker(); // start WebSocket
 
   return (
     <div style={{ padding: 20 }}>
       <h1>BTC/USDT Order Book</h1>
-      <OrderBook />
+      <Ticker />
     </div>
   );
 }
