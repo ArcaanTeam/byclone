@@ -1,7 +1,7 @@
 // src/hooks/useBinanceTicker.ts
 import { useEffect } from "react";
 import useWebSocket from "react-use-websocket";
-import { useTickerStore } from "@/store/ticker.store";
+import { useMarketStore } from "@/store/market.store";
 
 interface BinanceTickerStreamData {
   e: string; // event type
@@ -30,7 +30,7 @@ const symbol = "btcusdt";
 const SOCKET_URL = `${binanceWebsocketBaseUrl}/ws/${symbol}@ticker`;
 
 export const useBinanceTicker = () => {
-  const updateTicker = useTickerStore((s) => s.updateTicker);
+  const update = useMarketStore((s) => s.update);
 
   const { lastJsonMessage } = useWebSocket(SOCKET_URL, {
     shouldReconnect: () => true,
@@ -49,7 +49,7 @@ export const useBinanceTicker = () => {
         q: volumeUSDT,
       } = lastJsonMessage as BinanceTickerStreamData;
 
-      updateTicker({
+      update({
         lastPrice,
         changePercent,
         high24h,
@@ -58,5 +58,5 @@ export const useBinanceTicker = () => {
         volumeUSDT,
       });
     }
-  }, [lastJsonMessage, updateTicker]);
+  }, [lastJsonMessage, update]);
 };
