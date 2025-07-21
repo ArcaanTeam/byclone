@@ -1,73 +1,31 @@
+/* src/components/TradeList.css */
 .trade-list {
-  border: 1px solid #2d2d3d;
-  border-radius: 4px;
-  padding: 12px;
-  background-color: #1e1e2d;
-  color: #eaecef;
-  font-size: 13px;
-}
-
-.trade-list-title {
-  margin: 0 0 12px 0;
-  font-size: 16px;
-  color: #f0f4f8;
-}
-
-.trade-list-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 8px 0;
-  border-bottom: 1px solid #2d2d3d;
-  font-weight: 500;
-  color: #848e9c;
-}
-
-.trade-list-items {
-  max-height: 400px;
+  font-family: monospace;
+  padding: 1rem;
+  background: #111;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 8px;
+  width: 300px;
+  max-height: 500px;
   overflow-y: auto;
 }
 
-.trade-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 8px 0;
-  border-bottom: 1px solid #2d2d3d;
+.trade-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  font-size: 0.85rem;
 }
 
-.trade-item:last-child {
-  border-bottom: none;
+.trade-row.buy .price {
+  color: green;
 }
 
-.trade-price {
-  color: #f6465d; /* Default to sell color */
+.trade-row.sell .price {
+  color: red;
 }
 
-.trade-item.buy .trade-price {
-  color: #0ecb81; /* Buy color */
-}
-
-.trade-quantity,
-.trade-total,
-.trade-time {
-  text-align: right;
-}
-
-.trade-list-loading {
-  padding: 20px;
-  text-align: center;
-  color: #848e9c;
-}
-
-/* Custom scrollbar */
-.trade-list-items::-webkit-scrollbar {
-  width: 4px;
-}
-
-.trade-list-items::-webkit-scrollbar-track {
-  background: #1e1e2d;
-}
-
-.trade-list-items::-webkit-scrollbar-thumb {
-  background: #2d2d3d;
-  border-radius: 2px;
+.time {
+  opacity: 0.6;
 }

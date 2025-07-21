@@ -1,10 +1,12 @@
 // src/App.tsx
-import { useBinanceDepth } from '@/hooks/useBinanceDepthWebsocket';
 import { OrderBook } from '@/components/OrderBook';
-import TradeList from '@/components/trade-list/TradeList';
+import { useBinanceTrades } from '@/hooks/useBinanceAggTradeWebsocket';
+import { useBinanceDepth } from '@/hooks/useBinanceDepthWebsocket';
+import { TradeList } from './components/trade-list/TradeList';
 
 function App() {
   useBinanceDepth(); // start WebSocket
+  useBinanceTrades();
 
   return (
     <div style={{ display: 'flex', gap: '20pxs' }}>
@@ -15,7 +17,7 @@ function App() {
 
       <div style={{ padding: 20 }}>
         <h1>BTC/USDT Trade List</h1>
-        <TradeList symbol='BTCUSDT' maxItems={25} />
+        <TradeList />
       </div>
     </div>
   );

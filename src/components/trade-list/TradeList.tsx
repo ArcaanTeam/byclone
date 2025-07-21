@@ -1,76 +1,22 @@
-import useBinanceWebsocket from "@/hooks/useBinanceWebsocket";
-import { type AggTradeData, type TradeListItem } from "@/types/binance";
-import React, { useState } from "react";
+import { useTradeStore } from '@/store/trades-list.store';
 import './trade-list.css';
 
-interface TradeListProps {
-    symbol: string;
-    maxItems?: number;
-}
-
-const TradeList: React.FC<TradeListProps> = ({ symbol, maxItems }) => {
-    const [trades, setTrades] = useState<TradeListItem[]>([]);
-
-    const handleWebsocketMessages = (data: unknown) => {
-        if (
-            typeof data === "object" &&
-            data !== null &&
-            "e" in data &&
-            data.e === "aggTrade"
-        ) {
-            const tradeData = data as AggTradeData;
-
-            const newTrade: TradeListItem = {
-                id: tradeData.a,
-                price: parseFloat(tradeData.p),
-                quantity: parseFloat(tradeData.q),
-                quoteQty: parseFloat(tradeData.p) * parseFloat(tradeData.q),
-                time: new Date(tradeData.T).toLocaleTimeString(),
-                isBuyerMaker: tradeData.m,
-                isBestMatch: false // Not available in WS data
-            };
-
-            setTrades(prev => {
-                // Prevent duplicate trades (can happen during reconnections)
-                if (prev.some(t => t.id === newTrade.id)) {
-                    return prev;
-                }
-
-                const newTrades = [...prev, newTrade]
-                return newTrades.slice(0, maxItems)
-            })
-        }
-    }
-
-    const { isConnected } = useBinanceWebsocket(symbol, handleWebsocketMessages);
-
-    if (!isConnected)
-        return <div className="trade-list-loading">Loading trades...</div>
+export const TradeList = () => {
+    const allTrades = useTradeStore((s) => s.trades); // limit to 40 shown
+    const trades = allTrades.slice(0, 40)
 
     return (
         <div className="trade-list">
-            <h3 className="trade-list-title">Recent Trades</h3>
-            <div className="trade-list-header">
-                <span>Price (USDT)</span>
-                <span>Amount (BTC)</span>
-                <span>Total (USDT)</span>
-                <span>Time</span>
-            </div>
-            <div className="trade-list-items">
-                {trades.map((trade) => (
-                    <div
-                        key={`trade-${trade.id}`}
-                        className={`trade-item ${trade.isBuyerMaker ? 'sell' : 'buy'}`}
-                    >
-                        <span className="trade-price">{trade.price.toFixed(2)}</span>
-                        <span className="trade-quantity">{trade.quantity.toFixed(6)}</span>
-                        <span className="trade-total">{trade.quoteQty.toFixed(2)}</span>
-                        <span className="trade-time">{trade.time}</span>
+            <h3>Recent Trades</h3>
+            <div className="trade-rows">
+                {trades.map((t) => (
+                    <div key={t.id} className={`trade-row ${t.side}`}>
+                        <span className="price">{t.price}</span>
+                        <span className="qty">{t.qty}</span>
+                        <span className="time">{new Date(t.time).toLocaleTimeString()}</span>
                     </div>
                 ))}
             </div>
         </div>
-    )
-}
-
-export default TradeList;
+    );
+};
