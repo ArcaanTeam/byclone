@@ -1,42 +1,93 @@
 "use client";
 
 import { useOrderBookStore } from "@/lib/store/order-book.store";
-import "./order-book.css";
-
-const LevelRow = ({
-  level,
-  type,
-}: {
-  level: [string, string];
-  type: "bid" | "ask";
-}) => {
-  const [price, qty] = level;
-  return (
-    <div className={`level-row ${type}`}>
-      <span className="price">{price}</span>
-      <span className="qty">{qty}</span>
-    </div>
-  );
-};
+import { NormalCard } from "../../ui/card/card";
+import { ActionMenu } from "../../ui/ActionMenu/ActionMenu";
+import { OrderBookPair } from "./pairOrderBook/OrderBookPair";
+import { OrderRow } from "./types/order-row";
+import { useMarketStore } from "@/lib/store/market.store";
 
 export const OrderBook = () => {
   const bids = useOrderBookStore((s) => s.bids);
   const asks = useOrderBookStore((s) => s.asks);
+  const { lastTrade, markPrice } = useMarketStore((s) => s);
+
+  let askSum = 0;
+  const processedAsks = [...asks]
+    // @ts-ignore
+    .sort((a, b) => b[0] - a[0])
+    .map(([price, size]) => {
+      const p = Number(price);
+      const s = Number(size);
+      askSum += s;
+      return {
+        price: p,
+        size: s,
+        sum: Number(askSum.toFixed(3)),
+        side: "ask" as const,
+      };
+    });
+
+  let bidSum = 0;
+  const processedBids = [...bids]
+
+    // @ts-ignore
+    .sort((a, b) => b[0] - a[0])
+    .map(([price, size]) => {
+      const p = Number(price);
+      const s = Number(size);
+      bidSum += s;
+      return {
+        price: p,
+        size: s,
+        sum: Number(bidSum.toFixed(3)),
+        side: "bid" as const,
+      };
+    });
 
   return (
-    <div className="order-book">
-      <div className="column">
-        <h3>Bids</h3>
-        {bids.map((bid, idx) => (
-          <LevelRow key={idx} level={bid} type="bid" />
-        ))}
-      </div>
-      <div className="column">
-        <h3>Asks</h3>
-        {asks.map((ask, idx) => (
-          <LevelRow key={idx} level={ask} type="ask" />
-        ))}
-      </div>
-    </div>
+    <NormalCard
+      headerRight={<ActionMenu items={exampleItems} />}
+      withDivider
+      headerLeft="Order Book"
+    >
+      <OrderBookPair
+        processedAsks={processedAsks}
+        processedBids={processedBids}
+        lastTrade={lastTrade}
+        markPrice={markPrice}
+        maxRows={4}
+        scroll={false}
+      />
+    </NormalCard>
   );
 };
+
+const exampleItems = [
+  {
+    id: "view",
+    name: "View D",
+    onClick: () => alert("Viewing details..."),
+  },
+  {
+    id: "duplicate",
+    name: "Duplicate",
+    onClick: () => alert("Duplicated!"),
+  },
+  {
+    id: "custom-jsx",
+    name: "Delete",
+    onClick: () => alert("Deleted!"),
+  },
+  {
+    id: "copy",
+    show: true,
+    name: "Copy",
+    onClick: () => navigator.clipboard.writeText("Copied content!"),
+  },
+  {
+    id: "hidden-item",
+    name: "This won't show",
+    show: false,
+  },
+];

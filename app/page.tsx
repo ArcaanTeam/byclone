@@ -7,11 +7,17 @@ import { TradeList } from "@/lib/components/features/trade-list/TradeList";
 import { useBinanceDepth } from "@/lib/hooks/useBinanceDepthWebsocket";
 import { useBinanceTrades } from "@/lib/hooks/useBinanceAggTradeWebsocket";
 import { useBinanceOpenInterest } from "@/lib/hooks/useBinanceOpenInterest";
+import { useBinanceTrade } from "@/lib/hooks/useBinanceTrade";
+import { useBinanceMarkPrice } from "@/lib/hooks/useBinanceMarkPrice";
+import { useBinanceAllTickers } from "@/lib/hooks/useBinanceAllTickers";
 
 export default function Page() {
   useBinanceDepth();
-  useBinanceTrades();
-  useBinanceOpenInterest();
+  useBinanceTrade();
+  useBinanceMarkPrice();
+  useBinanceAllTickers();
+  // useBinanceTrades();
+  // useBinanceOpenInterest();
 
   return (
     <main>
@@ -25,11 +31,11 @@ export default function Page() {
         <div key="chart" className="bg-blue-500 drag-handle p-2">
           Chart Component
         </div>
-        <div key="orderbook" className="bg-green-500 drag-handle p-2">
+        <div key="orderbook" className="drag-handle">
           <OrderBook />
         </div>
         <div key="trade-list" className="bg-surface drag-handle p-2">
-          <TradeList />
+          {/* <TradeList /> */}
         </div>
         <div key="tradeform" className="bg-surface drag-handle p-2">
           Trade Form Component
@@ -42,7 +48,7 @@ export default function Page() {
         <div key="account" className="bg-surface drag-handle p-2">
           Account Component
         </div>
-        <div className="bg-surface text-primary dark:text-text p-4 rounded mb-4">
+        <div className="bg-surface text-primary dark:text-text rounded mb-4">
           Test
         </div>
       </GridLayoutWrapper>
