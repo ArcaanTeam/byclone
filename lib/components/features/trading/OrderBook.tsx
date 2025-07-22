@@ -4,8 +4,8 @@ import {
   TableRow,
   TableCell,
   TableBody,
-} from "lib/components/ui/table";
-import { useOrderBookStore } from "lib/store/order-book.store";
+} from "@/lib/components/ui/table";
+import { useOrderBookStore } from "@/lib/store/order-book.store";
 
 export function OrderBook() {
   const asks = useOrderBookStore((s) => s.asks);

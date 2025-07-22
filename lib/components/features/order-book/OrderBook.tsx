@@ -1,6 +1,6 @@
 "use client";
 
-import { useOrderBookStore } from "lib/store/order-book.store";
+import { useOrderBookStore } from "@/lib/store/order-book.store";
 import "./order-book.css";
 
 const LevelRow = ({

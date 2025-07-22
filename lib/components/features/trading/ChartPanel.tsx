@@ -3,7 +3,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "lib/components/ui/tabs";
+} from "@/lib/components/ui/tabs";
 
 export function ChartPanel() {
   return (

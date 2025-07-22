@@ -1,6 +1,6 @@
 "use client";
 
-import { useTradeStore } from "lib/store/trades-list.store";
+import { useTradeStore } from "@/lib/store/trades-list.store";
 import "./trade-list.css";
 
 export const TradeList = () => {

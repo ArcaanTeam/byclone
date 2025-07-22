@@ -3,9 +3,9 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "lib/components/ui/tabs";
-import { Input } from "lib/components/ui/input";
-import { Button } from "lib/components/ui/button";
+} from "@/lib/components/ui/tabs";
+import { Input } from "@/lib/components/ui/input";
+import { Button } from "@/lib/components/ui/button";
 
 export function TradeForm() {
   return (
