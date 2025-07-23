@@ -21,6 +21,13 @@ interface MarketState {
   // open interest
   openInterest: string;
 
+  // last trade
+  lastTrade: {
+    price: string;
+    qty: string;
+    time: number;
+  } | null;
+
   update: (data: Partial<MarketState>) => void;
 }
 
@@ -37,6 +44,7 @@ export const useMarketStore = create<MarketState>()(
     nextFundingTime: 0,
     indexPrice: "0",
     openInterest: "0",
+    lastTrade: null,
 
     update: (data) =>
       set((state) => {

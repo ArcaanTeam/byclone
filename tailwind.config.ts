@@ -4,9 +4,10 @@ const config: Config = {
   darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
+    "./lib/components/**/*.{ts,tsx}",
     "./pages/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {

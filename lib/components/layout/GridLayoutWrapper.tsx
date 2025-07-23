@@ -11,14 +11,14 @@ const ResponsiveGrid = WidthProvider(Responsive);
 
 const layouts = {
   lg: [
-    { i: "asset-ticker", x: 0, y: 0, w: 12, h: 1 },
-    { i: "ticker", x: 0, y: 0, w: 12, h: 2 },
-    { i: "chart", x: 0, y: 0, w: 7, h: 14 },
-    { i: "orderbook", x: 7, y: 0, w: 2, h: 8 },
-    { i: "trade-list", x: 7, y: 0, w: 2, h: 6 },
+    { i: "asset-ticker", x: 0, y: 0, w: 6, h: 1 },
+    { i: "ticker", x: 0, y: 0, w: 6, h: 2 },
+    { i: "chart", x: 0, y: 0, w: 6, h: 14 },
+    { i: "orderbook", x: 6, y: 0, w: 3, h: 10 },
+    { i: "trade-list", x: 6, y: 0, w: 3, h: 6 },
     { i: "tradeform", x: 9, y: 0, w: 3, h: 14 },
     { i: "account", x: 9, y: 0, w: 3, h: 8 },
-    { i: "user-trade-tabs", x: 0, y: 0, w: 7, h: 8 },
+    { i: "user-trade-tabs", x: 0, y: 0, w: 6, h: 8 },
   ],
 };
 
