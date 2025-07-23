@@ -33,7 +33,7 @@ export function NormalCard({
         className
       )}
     >
-      <CardHeader className="drag-handle  flex flex-row items-center justify-between py-2 px-3 space-y-0 border-b-[.25px] ">
+      <CardHeader className="drag-handle flex flex-row items-center justify-between py-2 px-3 space-y-0 border-b-[.25px] ">
         <div className="flex items-center gap-2 text-sm font-medium ">
           {headerLeft}
         </div>
