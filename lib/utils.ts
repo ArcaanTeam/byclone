@@ -21,3 +21,22 @@ export function formatNumberWithUnit(
 
   return scaled.toFixed(digits) + suffix;
 }
+// src/utils/format-number.ts
+export function formatNumber(
+  value: number | string,
+  opts: {
+    maxDecimals?: number; // پیش‌فرض 3
+    minDecimals?: number; // پیش‌فرض 0
+    locale?: string; // پیش‌فرض "en-US"
+  } = {}
+): string {
+  const { maxDecimals = 3, minDecimals = 0, locale = "en-US" } = opts;
+
+  const num = typeof value === "number" ? value : Number(value);
+  if (Number.isNaN(num)) return String(value);
+
+  return num.toLocaleString(locale, {
+    minimumFractionDigits: minDecimals,
+    maximumFractionDigits: maxDecimals,
+  });
+}
