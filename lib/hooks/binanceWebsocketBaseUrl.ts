@@ -43,6 +43,7 @@ export const useBinanceTicker = () => {
         c: lastPrice,
         P: changePercent,
         h: high24h,
+        p: priceChange,
         l: low24h,
         v: volumeBTC,
         q: volumeUSDT,
@@ -55,6 +56,7 @@ export const useBinanceTicker = () => {
         low24h,
         volumeBTC,
         volumeUSDT,
+        priceChange,
       });
     }
   }, [lastJsonMessage, update]);

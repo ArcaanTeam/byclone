@@ -20,6 +20,8 @@ export const useBinanceOpenInterest = () => {
     }
   );
 
+  console.log(lastJsonMessage);
+
   useEffect(() => {
     if (!lastJsonMessage) return;
     const { o: openInterest } = lastJsonMessage;
