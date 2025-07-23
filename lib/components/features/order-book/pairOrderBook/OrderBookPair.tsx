@@ -1,5 +1,3 @@
-// src/components/order-book/order-book-table.tsx
-// src/components/order-book/order-book-table.tsx
 import { DataTable } from "@/lib/components/ui/DataTable/DataTable";
 import { orderBookColumns } from "./orderBookPairColumn";
 import { ArrowDown, ArrowUp } from "lucide-react";
