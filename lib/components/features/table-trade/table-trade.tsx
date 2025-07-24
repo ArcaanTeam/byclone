@@ -1,4 +1,3 @@
-// components/TradesTable.tsx
 import * as React from "react";
 import { useTradeStore } from "@/lib/store/trades-list.store";
 import { DataTable } from "@/lib/components/ui/DataTable/DataTable";
