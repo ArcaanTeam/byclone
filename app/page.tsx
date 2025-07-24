@@ -10,6 +10,7 @@ import { useBinanceOpenInterest } from "@/lib/hooks/useBinanceOpenInterest";
 import { useBinanceTrade } from "@/lib/hooks/useBinanceTrade";
 import { useBinanceMarkPrice } from "@/lib/hooks/useBinanceMarkPrice";
 import { useBinanceAllTickers } from "@/lib/hooks/useBinanceAllTickers";
+import { MarketTickerBar } from "@/lib/components/features/marke-ticker-bar/MarketTickerBar";
 
 export default function Page() {
   useBinanceDepth();
@@ -22,8 +23,8 @@ export default function Page() {
   return (
     <main>
       <GridLayoutWrapper>
-        <div key="asset-ticker" className="drag-handle p-2">
-          Asset Ticker Component
+        <div key="asset-ticker" className="drag-handle rounded-lg">
+          <MarketTickerBar />
         </div>
         <div key="ticker" className="bg-red-500 drag-handle p-2">
           <FullTicker />
