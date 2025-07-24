@@ -14,6 +14,7 @@ interface BinanceAggTrade {
   T: number; // Trade time
   m: boolean; // Is the buyer the market maker?
   M: boolean; // Ignore
+  P: string; // Price change
 }
 
 const SOCKET_URL = "wss://fstream.binance.com/ws/btcusdt@trade";
@@ -29,13 +30,14 @@ export const useBinanceTrade = () => {
 
   useEffect(() => {
     if (lastJsonMessage) {
-      const { p, q, T } = lastJsonMessage as BinanceAggTrade;
+      const { p, q, T, P } = lastJsonMessage as BinanceAggTrade;
 
       update({
         lastTrade: {
           price: p,
           qty: q,
           time: T,
+          priceChange: P,
         },
       });
     }

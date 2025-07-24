@@ -21,7 +21,7 @@ export function formatNumberWithUnit(
 
   return scaled.toFixed(digits) + suffix;
 }
-// src/utils/format-number.ts
+
 export function formatNumber(
   value: number | string,
   opts: {
