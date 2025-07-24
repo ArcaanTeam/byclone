@@ -1,11 +1,10 @@
 "use client";
 
-import { useOrderBookStore } from "@/lib/store/order-book.store";
-import { NormalCard } from "../../ui/card/card";
-import { ActionMenu } from "../../ui/ActionMenu/ActionMenu";
-import { OrderBookPair } from "./pairOrderBook/OrderBookPair";
-import { OrderRow } from "./types/order-row";
 import { useMarketStore } from "@/lib/store/market.store";
+import { useOrderBookStore } from "@/lib/store/order-book.store";
+import { ActionMenu } from "@/lib/components/ui/action-menu/ActionMenu";
+import { NormalCard } from "@/lib/components/ui/card/card";
+import { OrderBookPair } from "./pairOrderBook/OrderBookPair";
 
 export const OrderBook = () => {
   const bids = useOrderBookStore((s) => s.bids);
