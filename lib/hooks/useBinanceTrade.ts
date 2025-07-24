@@ -1,26 +1,24 @@
-import { useEffect } from "react";
+import { throttle } from "lodash";
+import { useTradeStore } from "lib/store/trades-list.store";
+import { useMarketStore } from "lib/store/market.store";
+import { useEffect, useMemo } from "react";
 import useWebSocket from "react-use-websocket";
-import { useMarketStore } from "@/lib/store/market.store";
 
-interface BinanceAggTrade {
-  e: "aggTrade"; // Event type
-  E: number; // Event time
-  s: string; // Symbol
-  a: number; // Aggregate trade ID
-  p: string; // Price
-  q: string; // Quantity
-  f: number; // First trade ID
-  l: number; // Last trade ID
-  T: number; // Trade time
-  m: boolean; // Is the buyer the market maker?
-  M: boolean; // Ignore
-  P: string; // Price change
-}
+const symbol = "btcusdt";
+const SOCKET_URL = `${process.env.NEXT_PUBLIC_BINANCE_WS_BASE_URL}/ws/${symbol}@aggTrade`;
 
-const SOCKET_URL = "wss://fstream.binance.com/ws/btcusdt@trade";
+export const useBinanceTrades = () => {
+  const pushTrade = useTradeStore((s) => s.pushTrade);
+  const updateMarket = useMarketStore((s) => s.update);
 
-export const useBinanceTrade = () => {
-  const update = useMarketStore((s) => s.update);
+  const throttledPush = useMemo(
+    () =>
+      throttle((trade) => {
+        pushTrade(trade);
+        updateMarket({ lastTrade: trade });
+      }, 200),
+    [pushTrade, updateMarket]
+  );
 
   const { lastJsonMessage } = useWebSocket(SOCKET_URL, {
     shouldReconnect: () => true,
@@ -29,17 +27,21 @@ export const useBinanceTrade = () => {
   });
 
   useEffect(() => {
-    if (lastJsonMessage) {
-      const { p, q, T, P } = lastJsonMessage as BinanceAggTrade;
-
-      update({
-        lastTrade: {
-          price: p,
-          qty: q,
-          time: T,
-          priceChange: P,
-        },
-      });
-    }
-  }, [lastJsonMessage, update]);
+    if (!lastJsonMessage) return;
+    const msg = lastJsonMessage as {
+      a: number;
+      p: string;
+      q: string;
+      m: boolean;
+      T: number;
+    };
+    const trade = {
+      id: msg.a,
+      price: msg.p,
+      qty: msg.q,
+      time: msg.T,
+      side: msg.m ? "sell" : "buy",
+    };
+    throttledPush(trade);
+  }, [lastJsonMessage, throttledPush]);
 };

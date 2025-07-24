@@ -1,18 +1,11 @@
-// src/components/order-book/order-book-table.tsx
-// src/components/order-book/order-book-table.tsx
 import { DataTable } from "@/lib/components/ui/DataTable/DataTable";
 import { orderBookColumns } from "./orderBookPairColumn";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { TextVariant } from "@/lib/components/ui/text-variant";
 import { OrderRow } from "../types/order-row";
-import { usePrevious } from "@/lib/utilsHooks/usePrevious";
 
 type OrderBookPairProps = {
-  lastTrade: {
-    price: string;
-    qty: string;
-    time: number;
-  } | null;
+  lastTrade: string;
   processedAsks: OrderRow[];
   processedBids: OrderRow[];
   maxRows?: number;
@@ -28,7 +21,7 @@ export function OrderBookPair({
   lastTrade,
   scroll,
 }: OrderBookPairProps) {
-  const diff = Number(markPrice) - Number(lastTrade?.price);
+  const diff = Number(markPrice) - Number(lastTrade);
   const up = diff > 0;
   return (
     <div className="flex flex-col gap-2">
@@ -56,7 +49,8 @@ export function OrderBookPair({
             )
           }
         >
-          {lastTrade?.price}
+          <pre></pre>
+          {lastTrade}
         </TextVariant>
 
         <TextVariant

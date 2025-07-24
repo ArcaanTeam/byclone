@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import useWebSocket from "react-use-websocket";
 import { useCandlesStore } from "../store/candles.store";
+import throttle from "lodash/throttle";
 
 interface BinanceKlineMessage {
   e: string;
@@ -20,7 +21,7 @@ export const useBinanceCandles = (symbol: string) => {
   const setCandles = useCandlesStore((s) => s.setCandles);
   const setVolume = useCandlesStore((s) => s.setVolume);
 
-  // ✅ Fetch historical data from REST API
+  // ✅ Historical REST fetch
   useEffect(() => {
     const fetchHistorical = async () => {
       try {
@@ -52,34 +53,40 @@ export const useBinanceCandles = (symbol: string) => {
     fetchHistorical();
   }, [symbol, interval, setCandles, setVolume]);
 
-  // ✅ Live data via WebSocket
+  // ✅ WebSocket live updates
   const SOCKET_URL = `wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@kline_${interval}`;
-
   const { lastJsonMessage } = useWebSocket<BinanceKlineMessage>(SOCKET_URL, {
     shouldReconnect: () => true,
     reconnectAttempts: 10,
     reconnectInterval: 2000,
   });
 
+  // ✅ Throttled update to reduce render pressure
+  const throttledUpdate = useMemo(
+    () =>
+      throttle((k: BinanceKlineMessage["k"]) => {
+        const newCandle = {
+          time: k.t / 1000,
+          open: parseFloat(k.o),
+          high: parseFloat(k.h),
+          low: parseFloat(k.l),
+          close: parseFloat(k.c),
+        };
+
+        const newVolume = {
+          time: k.t / 1000,
+          value: parseFloat(k.v),
+          color: parseFloat(k.c) >= parseFloat(k.o) ? "#26a69a" : "#ef5350",
+        };
+
+        updateLatest(newCandle, newVolume);
+      }, 300),
+    [updateLatest]
+  );
+
   useEffect(() => {
-    if (!lastJsonMessage || lastJsonMessage.e !== "kline") return;
-
-    const k = lastJsonMessage.k;
-
-    const newCandle = {
-      time: k.t / 1000,
-      open: parseFloat(k.o),
-      high: parseFloat(k.h),
-      low: parseFloat(k.l),
-      close: parseFloat(k.c),
-    };
-
-    const newVolume = {
-      time: k.t / 1000,
-      value: parseFloat(k.v),
-      color: parseFloat(k.c) >= parseFloat(k.o) ? "#26a69a" : "#ef5350",
-    };
-
-    updateLatest(newCandle, newVolume);
-  }, [lastJsonMessage, updateLatest]);
+    if (lastJsonMessage?.e === "kline") {
+      throttledUpdate(lastJsonMessage.k);
+    }
+  }, [lastJsonMessage, throttledUpdate]);
 };

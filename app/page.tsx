@@ -6,21 +6,18 @@ import { OrderBook } from "@/lib/components/features/order-book/OrderBook";
 import { useBinanceDepth } from "@/lib/hooks/useBinanceDepthWebsocket";
 import { useBinanceTrades } from "@/lib/hooks/useBinanceAggTradeWebsocket";
 import { useBinanceOpenInterest } from "@/lib/hooks/useBinanceOpenInterest";
-import { useBinanceTrade } from "@/lib/hooks/useBinanceTrade";
 import { useBinanceMarkPrice } from "@/lib/hooks/useBinanceMarkPrice";
-import { useBinanceAllTickers } from "@/lib/hooks/useBinanceAllTickers";
+import { useBinanceTickers } from "@/lib/hooks/useBinanceAllTickers";
 import { MarketTickerBar } from "@/lib/components/features/marke-ticker-bar/MarketTickerBar";
-import { useBinanceTicker } from "@/lib/hooks/binanceWebsocketBaseUrl";
+// import { useBinanceTicker } from "@/lib/hooks/binanceWebsocketBaseUrl";
 import { useBinanceCandles } from "@/lib/hooks/useBinanceCandles";
 import { CandleChart } from "@/lib/components/features/chart/Chart";
 import { TradesTable } from "@/lib/components/features/table-trade/table-trade";
 
 export default function Page() {
   useBinanceDepth();
-  useBinanceTrade();
   useBinanceMarkPrice();
-  useBinanceAllTickers();
-  useBinanceTicker();
+  useBinanceTickers();
   useBinanceTrades();
   useBinanceOpenInterest();
   useBinanceCandles("ETHUSDT");
