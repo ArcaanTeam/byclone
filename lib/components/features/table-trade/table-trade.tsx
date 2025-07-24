@@ -1,7 +1,6 @@
-// components/TradesTable.tsx
 import * as React from "react";
 import { useTradeStore } from "@/lib/store/trades-list.store";
-import { DataTable } from "@/lib/components/ui/DataTable/DataTable";
+import { DataTable } from "@/lib/components/ui/data-table/DataTable";
 import { TradeRow } from "../order-book/types/trade-row";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown } from "lucide-react";

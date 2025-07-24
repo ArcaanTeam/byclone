@@ -1,9 +1,10 @@
 "use client";
+
 import "@/global.css";
-import React from "react";
-import { Navbar } from "@/lib/components/layout/Navbar";
 import { Footer } from "@/lib/components/layout/Footer";
+import { Navbar } from "@/lib/components/layout/Navbar";
 import { ThemeProvider } from "@/lib/components/ui/theme-provider";
+import React from "react";
 
 export default function RootLayout({
   children,

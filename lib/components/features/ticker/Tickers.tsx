@@ -2,8 +2,8 @@
 
 import { useMarketStore } from "@/lib/store/market.store";
 import { ChevronDown, Star } from "lucide-react";
-import { TextVariant } from "../../ui/text-variant";
-import { CustomCarousel } from "../../ui/CustomCarousel/CustomCarousel";
+import { CustomCarousel } from "@/lib/components/ui/custom-carousel/CustomCarousel";
+import { TextVariant } from "@/lib/components/ui/text-variant";
 
 export const FullTicker = () => {
   const lastPrice = useMarketStore((s) => s.lastPrice);
