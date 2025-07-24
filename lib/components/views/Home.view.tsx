@@ -9,18 +9,17 @@ import { TradePanel } from "@/lib/components/features/trade-panel/PlaceOrder";
 import { GridLayoutWrapper } from "@/lib/components/layout/GridLayoutWrapper";
 import { useBinanceTicker } from "@/lib/hooks/binanceWebsocketBaseUrl";
 import { useBinanceTrades } from "@/lib/hooks/useBinanceAggTradeWebsocket";
-import { useBinanceAllTickers } from "@/lib/hooks/useBinanceAllTickers";
+import { useBinanceTickers } from "@/lib/hooks/useBinanceAllTickers";
 import { useBinanceCandles } from "@/lib/hooks/useBinanceCandles";
 import { useBinanceDepth } from "@/lib/hooks/useBinanceDepthWebsocket";
 import { useBinanceMarkPrice } from "@/lib/hooks/useBinanceMarkPrice";
 import { useBinanceOpenInterest } from "@/lib/hooks/useBinanceOpenInterest";
-import { useBinanceTrade } from "@/lib/hooks/useBinanceTrade";
 
 export default function HomeView() {
   useBinanceDepth();
-  useBinanceTrade();
+  useBinanceTrades();
   useBinanceMarkPrice();
-  useBinanceAllTickers();
+  useBinanceTickers();
   useBinanceTicker();
   useBinanceTrades();
   useBinanceOpenInterest();
