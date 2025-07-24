@@ -6,21 +6,18 @@ import { CustomCarousel } from "@/lib/components/ui/custom-carousel/CustomCarous
 import { TextVariant } from "@/lib/components/ui/text-variant";
 
 export const FullTicker = () => {
-  const {
-    lastPrice,
-    changePercent,
-    lastTrade,
-    high24h,
-    low24h,
-    volumeBTC,
-    volumeUSDT,
-    markPrice,
-    fundingRate,
-    nextFundingTime,
-    indexPrice,
-    openInterest,
-    priceChange,
-  } = useMarketStore((s) => s);
+  const lastPrice = useMarketStore((s) => s.lastPrice);
+  const changePercent = useMarketStore((s) => s.changePercent);
+  const lastTrade = useMarketStore((s) => s.lastTrade);
+  const high24h = useMarketStore((s) => s.high24h);
+  const low24h = useMarketStore((s) => s.low24h);
+  const volumeBTC = useMarketStore((s) => s.volumeBTC);
+  const volumeUSDT = useMarketStore((s) => s.volumeUSDT);
+  const markPrice = useMarketStore((s) => s.markPrice);
+  const fundingRate = useMarketStore((s) => s.fundingRate);
+  const indexPrice = useMarketStore((s) => s.indexPrice);
+  const openInterest = useMarketStore((s) => s.openInterest);
+  const priceChange = useMarketStore((s) => s.priceChange);
 
   const tickers = [
     {
@@ -88,7 +85,7 @@ export const FullTicker = () => {
     },
   ];
 
-  const diff = Number(markPrice) - Number(lastTrade?.price);
+  const diff = Number(markPrice) - Number(lastTrade);
   const up = diff > 0;
 
   return (

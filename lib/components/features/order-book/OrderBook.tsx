@@ -5,44 +5,55 @@ import { useOrderBookStore } from "@/lib/store/order-book.store";
 import { ActionMenu } from "@/lib/components/ui/action-menu/ActionMenu";
 import { NormalCard } from "@/lib/components/ui/card/card";
 import { OrderBookPair } from "./pairOrderBook/OrderBookPair";
+import { useMemo } from "react";
 
 export const OrderBook = () => {
   const bids = useOrderBookStore((s) => s.bids);
   const asks = useOrderBookStore((s) => s.asks);
-  const { lastTrade, markPrice } = useMarketStore((s) => s);
+  const lastTrade = useMarketStore((s) => s.lastPrice);
+  const markPrice = useMarketStore((s) => s.markPrice);
 
-  let askSum = 0;
-  const processedAsks = [...asks]
-    // @ts-ignore
-    .sort((a, b) => b[0] - a[0])
-    .map(([price, size]) => {
-      const p = Number(price);
-      const s = Number(size);
-      askSum += s;
-      return {
-        price: p,
-        size: s,
-        sum: Number(askSum.toFixed(3)),
-        side: "ask" as const,
-      };
-    });
+  const processedAsks = useMemo(() => {
+    let askSum = 0;
+    // فرض می‌کنیم asks یک آرایه [price, size] است
+    return (
+      [...asks]
+        // @ts-ignore
+        .sort((a, b) => b[0] - a[0])
+        .map(([price, size]) => {
+          const p = Number(price);
+          const s = Number(size);
+          askSum += s;
+          return {
+            price: p,
+            size: s,
+            sum: Number(askSum.toFixed(3)),
+            side: "ask" as const,
+          };
+        })
+    );
+  }, [asks]);
 
-  let bidSum = 0;
-  const processedBids = [...bids]
-
-    // @ts-ignore
-    .sort((a, b) => b[0] - a[0])
-    .map(([price, size]) => {
-      const p = Number(price);
-      const s = Number(size);
-      bidSum += s;
-      return {
-        price: p,
-        size: s,
-        sum: Number(bidSum.toFixed(3)),
-        side: "bid" as const,
-      };
-    });
+  // محاسبه‌ی لیست Bidها
+  const processedBids = useMemo(() => {
+    let bidSum = 0;
+    return (
+      [...bids]
+        // @ts-ignore
+        .sort((a, b) => b[0] - a[0])
+        .map(([price, size]) => {
+          const p = Number(price);
+          const s = Number(size);
+          bidSum += s;
+          return {
+            price: p,
+            size: s,
+            sum: Number(bidSum.toFixed(3)),
+            side: "bid" as const,
+          };
+        })
+    );
+  }, [bids]);
 
   return (
     <NormalCard
