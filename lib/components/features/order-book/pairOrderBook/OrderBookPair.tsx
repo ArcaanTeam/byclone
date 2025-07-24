@@ -1,9 +1,8 @@
-import { DataTable } from "@/lib/components/ui/DataTable/DataTable";
-import { orderBookColumns } from "./orderBookPairColumn";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { DataTable } from "@/lib/components/ui/data-table/DataTable";
 import { TextVariant } from "@/lib/components/ui/text-variant";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { OrderRow } from "../types/order-row";
-import { usePrevious } from "@/lib/utilsHooks/usePrevious";
+import { orderBookColumns } from "./orderBookPairColumn";
 
 type OrderBookPairProps = {
   lastTrade: {
