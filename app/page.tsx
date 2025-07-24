@@ -14,16 +14,17 @@ import { useBinanceTicker } from "@/lib/hooks/binanceWebsocketBaseUrl";
 import { useBinanceCandles } from "@/lib/hooks/useBinanceCandles";
 import { CandleChart } from "@/lib/components/features/chart/Chart";
 import { TradesTable } from "@/lib/components/features/table-trade/table-trade";
+import { TradePanel } from "@/lib/components/features/trade-panel/PlaceOrder";
 
 export default function Page() {
-  useBinanceDepth();
-  useBinanceTrade();
-  useBinanceMarkPrice();
-  useBinanceAllTickers();
-  useBinanceTicker();
-  useBinanceTrades();
-  useBinanceOpenInterest();
-  useBinanceCandles("ETHUSDT");
+  // useBinanceDepth();
+  // useBinanceTrade();
+  // useBinanceMarkPrice();
+  // useBinanceAllTickers();
+  // useBinanceTicker();
+  // useBinanceTrades();
+  // useBinanceOpenInterest();
+  // useBinanceCandles("ETHUSDT");
 
   return (
     <main>
@@ -43,8 +44,8 @@ export default function Page() {
         <div key="trade-list" className="drag-handle">
           <TradesTable />
         </div>
-        <div key="tradeform" className="bg-surface drag-handle p-2">
-          Trade Form Component
+        <div key="tradeform" className="bg-surface">
+          <TradePanel />
         </div>
         <div key="user-trade-tabs" className="bg-surface drag-handle p-2">
           User Trade Tabs Component
