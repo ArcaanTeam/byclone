@@ -11,12 +11,14 @@ import {
   DropdownMenuItem,
 } from "@/lib/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
+import clsx from "clsx";
 
 type CardProps = {
   headerLeft?: React.ReactNode;
   headerRight?: React.ReactNode;
   withDivider?: boolean;
   className?: string;
+  notDraggable?: boolean;
   children: React.ReactNode;
 };
 
@@ -25,6 +27,7 @@ export function NormalCard({
   headerRight,
   className,
   children,
+  notDraggable,
 }: CardProps) {
   return (
     <Card
@@ -33,7 +36,12 @@ export function NormalCard({
         className
       )}
     >
-      <CardHeader className="drag-handle flex flex-row items-center justify-between py-2 px-3 space-y-0 border-b-[.25px] ">
+      <CardHeader
+        className={clsx(
+          "flex flex-row items-center justify-between py-2 px-3 space-y-0 border-b-[.25px]",
+          !notDraggable && "drag-handle"
+        )}
+      >
         <div className="flex items-center gap-2 text-sm font-medium ">
           {headerLeft}
         </div>
