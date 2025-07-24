@@ -58,7 +58,7 @@ export function OrderBookPair({
         </TextVariant>
 
         <TextVariant
-          className="text-xs  hover:text-binance-gold"
+          className="text-xs hover:text-binance-gold"
           variant="neutral"
         >
           {markPrice}
