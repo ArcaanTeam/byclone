@@ -220,7 +220,7 @@ export const FullTicker = () => {
         items={filtered}
         renderItem={(item) => item.component}
         itemClassName="max-w-fit min-w-fit"
-        className="max-w-[300px]"
+        className="max-w-[300px] block sm:hidden"
       />
       <ActionMenu
         className=" ml-auto"

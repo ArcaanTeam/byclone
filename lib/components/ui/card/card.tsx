@@ -38,7 +38,7 @@ export function NormalCard({
     >
       <CardHeader
         className={clsx(
-          "flex flex-row items-center justify-between py-2 px-3 space-y-0 border-b-[.25px]",
+          "flex flex-row items-center justify-between py-2 px-3 border-white space-y-0 border-b-[.25px]",
           !notDraggable && "drag-handle"
         )}
       >
