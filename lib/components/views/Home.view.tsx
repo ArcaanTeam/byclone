@@ -16,14 +16,14 @@ import { useBinanceMarkPrice } from "@/lib/hooks/useBinanceMarkPrice";
 import { useBinanceOpenInterest } from "@/lib/hooks/useBinanceOpenInterest";
 
 export default function HomeView() {
-  // useBinanceDepth();
-  // useBinanceTrades();
-  // useBinanceMarkPrice();
-  // useBinanceTickers();
-  // useBinanceTicker();
-  // useBinanceTrades();
-  // useBinanceOpenInterest();
-  // useBinanceCandles("ETHUSDT");
+  useBinanceDepth();
+  useBinanceTrades();
+  useBinanceMarkPrice();
+  useBinanceTickers();
+  useBinanceTicker();
+  useBinanceTrades();
+  useBinanceOpenInterest();
+  useBinanceCandles("ETHUSDT");
 
   return (
     <main>
