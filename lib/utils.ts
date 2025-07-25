@@ -40,3 +40,7 @@ export function formatNumber(
     maximumFractionDigits: maxDecimals,
   });
 }
+
+export function roundHalfUp(n: number) {
+  return Math.floor(n + 0.5);
+}

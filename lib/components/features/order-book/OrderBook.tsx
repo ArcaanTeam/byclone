@@ -5,7 +5,8 @@ import { useOrderBookStore } from "@/lib/store/order-book.store";
 import { ActionMenu } from "@/lib/components/ui/action-menu/ActionMenu";
 import { NormalCard } from "@/lib/components/ui/card/card";
 import { OrderBookPair } from "./pairOrderBook/OrderBookPair";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useLayoutStore } from "@/lib/store/layoutStore";
 
 export const OrderBook = () => {
   const bids = useOrderBookStore((s) => s.bids);
@@ -55,6 +56,8 @@ export const OrderBook = () => {
     );
   }, [bids]);
 
+  const maxRows = useLayoutStore((s) => s.orderBookMaxRow);
+
   return (
     <NormalCard
       headerRight={<ActionMenu items={exampleItems} />}
@@ -66,7 +69,7 @@ export const OrderBook = () => {
         processedBids={processedBids}
         lastTrade={lastTrade}
         markPrice={markPrice}
-        maxRows={4}
+        maxRows={maxRows}
         scroll={false}
       />
     </NormalCard>

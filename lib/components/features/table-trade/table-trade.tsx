@@ -40,11 +40,7 @@ export function TradesTable() {
   );
 
   return (
-    <NormalCard
-      headerLeft="Trades"
-      headerRight={<ArrowDown className="h-4 w-4 cursor-pointer" />}
-      withDivider
-    >
+    <NormalCard headerLeft="Trades" withDivider>
       <DataTable
         data={trades}
         columns={columns}
