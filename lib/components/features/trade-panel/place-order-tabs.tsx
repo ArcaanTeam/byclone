@@ -17,14 +17,15 @@ export function PlaceOrderTabs() {
       defaultValue="Limit"
       value={tab}
       onValueChange={(value) => setTab(value as TradePanelTabs)}
-      className="w-full border-b border-gray-200"
+      className="w-full px-1"
     >
-      <TabsList className="w-full border-b border-gray-200 justify-start">
+      <TabsList className="w-full border-b border-gray-200 rounded-none justify-start bg-transparent">
         <TabsTrigger
           value="Limit"
           className={`relative max-w-fit px-3 py-2 text-sm text-gray-500 dark:text-gray-500 font-medium transition-colors border-none
-            data-[state=active]:text-black
+            data-[state=active]:text-white
             data-[state=active]:font-bold
+            data-[state=active]:bg-transparent
             data-[state=active]:border-none
             data-[state=inactive]:border-none
             data-[state=hover]:border-none
@@ -43,9 +44,10 @@ export function PlaceOrderTabs() {
         <TabsTrigger
           value="Market"
           className={`relative max-w-fit px-3 py-2 text-sm font-medium dark:text-gray-500 text-gray-500 transition-color border-none
-            data-[state=active]:text-black
+            data-[state=active]:text-white
             data-[state=active]:font-bold
             data-[state=active]:border-none
+            data-[state=active]:bg-transparent
             data-[state=active]:after:absolute
             data-[state=active]:after:content-['']
             data-[state=active]:after:left-1/2
