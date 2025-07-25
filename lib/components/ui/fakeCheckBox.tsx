@@ -32,7 +32,10 @@ export const FakeCheckbox: React.FC<FakeCheckboxProps> = ({
   return (
     <button
       type="button"
-      onClick={}
+      onClick={(e) => {
+        e.stopPropagation();
+        toggle();
+      }}
       className={`w-fit flex items-center gap-2 focus:outline-none ${className}`}
     >
       <span
