@@ -4,7 +4,7 @@ import { Button } from "@/lib/components/ui/button";
 
 export default function AuthButtons() {
   return (
-    <div className="w-full max-w-sm p-4 space-y-4 border-none shadow-none">
+    <div className="w-full max-w-sm p-2 space-y-4 border-none shadow-none">
       <div className="space-y-3 flex flex-col">
         <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium text-base h-11 rounded-md">
           Register Now

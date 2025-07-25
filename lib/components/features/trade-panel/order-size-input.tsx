@@ -21,7 +21,7 @@ export default function OrderSizeInput() {
   return (
     <div className="w-full max-w-sm:w space-y-4 border-none shadow-none bg-transparent">
       {/* Size Slider Input */}
-      <div className="space-y-2 flex flex-col gap-[16px]">
+      <div className="space-y-2 flex flex-col gap-[24px]">
         <Label className="text-muted-foreground">Size</Label>
         <div className="relative rounded-sm">
           <Input
