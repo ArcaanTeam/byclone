@@ -19,13 +19,13 @@ export default function OrderSizeInput() {
   const [sliderValue, setSliderValue] = useState([0]);
 
   return (
-    <div className="w-full max-w-sm:w space-y-4 border-none shadow-none">
+    <div className="w-full max-w-sm:w space-y-4 border-none shadow-none bg-transparent">
       {/* Size Slider Input */}
-      <div className="space-y-2 flex flex-col gap-[16px]">
+      <div className="space-y-2 flex flex-col gap-[24px]">
         <Label className="text-muted-foreground">Size</Label>
-        <div className="relative">
+        <div className="relative rounded-sm">
           <Input
-            className="pr-20 text-lg font-medium"
+            className="pr-20 text-lg font-medium border-gray-500 hover:border-yellow-500/75 focus-visible:ring-0 focus-visible:border-yellow-500"
             value={`${sliderValue[0]}%`}
             readOnly
           />
@@ -34,7 +34,7 @@ export default function OrderSizeInput() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:bg-transparent outline-non"
               >
                 {selectedUnit}
               </Button>
@@ -51,6 +51,7 @@ export default function OrderSizeInput() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+
         <Slider
           min={0}
           max={100}

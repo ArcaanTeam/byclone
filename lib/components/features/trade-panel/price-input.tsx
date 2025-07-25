@@ -24,13 +24,17 @@ export default function PriceInput() {
               type="text"
               value={formatPrice(price)}
               readOnly
-              className="pr-20 text-lg font-semibold border-yellow-500 focus-visible:ring-yellow-500 focus-visible:border-yellow-500"
+              className="pr-20 text-lg font-semibold border-yellow-500/65 hover:border-yellow-500/75 focus-visible:ring-0 focus-visible:border-yellow-500"
             />
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">
               USDT
             </span>
           </div>
-          <Button variant="outline" size="sm" className="font-semibold">
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-[36px] font-semibold bg-transparent border-gray-200 hover:bg-transparent"
+          >
             BBO
           </Button>
         </div>
