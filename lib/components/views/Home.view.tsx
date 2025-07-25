@@ -14,6 +14,7 @@ import { useBinanceCandles } from "@/lib/hooks/useBinanceCandles";
 import { useBinanceDepth } from "@/lib/hooks/useBinanceDepthWebsocket";
 import { useBinanceMarkPrice } from "@/lib/hooks/useBinanceMarkPrice";
 import { useBinanceOpenInterest } from "@/lib/hooks/useBinanceOpenInterest";
+import { useRef } from "react";
 
 export default function HomeView() {
   useBinanceDepth();
@@ -37,7 +38,7 @@ export default function HomeView() {
         <div key="chart" className="drag-handle">
           <CandleChart />
         </div>
-        <div key="orderbook" className="drag-handle">
+        <div key="orderbook">
           <OrderBook />
         </div>
         <div key="trade-list" className="drag-handle">
