@@ -65,7 +65,7 @@ export function DataTable<TData>({
       <Wrapper {...wrapperProps}>
         <Table className="w-full text-xs leading-5">
           {showHeader && (
-            <TableHeader className="sticky top-0 z-10 bg-background">
+            <TableHeader className="sticky top-0 z-10">
               {table.getHeaderGroups().map((hg) => (
                 <TableRow key={hg.id} className="!border-0">
                   {hg.headers.map((header) => (
