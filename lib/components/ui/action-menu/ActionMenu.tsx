@@ -8,7 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import { MoreHorizontal } from "lucide-react";
 import React from "react";
-type ActionItem = {
+export type ActionItem = {
   id: string;
   name?: string;
   show?: boolean;
@@ -21,12 +21,14 @@ type ActionMenuProps = {
   items: ActionItem[];
   className?: string;
   icon?: React.ReactNode;
+  contentClassName?: string;
 };
 
 export const ActionMenu = React.memo(function ActionMenu({
   items,
   className,
   icon = <MoreHorizontal className="w-4 h-4" />,
+  contentClassName = "w-36",
 }: ActionMenuProps) {
   return (
     <DropdownMenu>
@@ -38,7 +40,7 @@ export const ActionMenu = React.memo(function ActionMenu({
       <DropdownMenuContent
         side="bottom"
         align="end"
-        className="w-36 bg-slate-900 border-0 rounded"
+        className={`${contentClassName} bg-slate-900 border-0 rounded`}
       >
         {items
           .filter((item) => item.show !== false)

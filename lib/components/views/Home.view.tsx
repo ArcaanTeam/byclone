@@ -46,15 +46,6 @@ export default function HomeView() {
         <div key="tradeform" className="bg-surface">
           <TradePanel />
         </div>
-        <div key="user-trade-tabs" className="bg-surface drag-handle p-2">
-          User Trade Tabs Component
-        </div>
-        <div key="account" className="bg-surface drag-handle p-2">
-          Account Component
-        </div>
-        <div className="bg-surface text-primary dark:text-text rounded mb-4">
-          Test
-        </div>
       </GridLayoutWrapper>
     </main>
   );
